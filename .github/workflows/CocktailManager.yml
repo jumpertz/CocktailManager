@@ -18,5 +18,5 @@ jobs:
           sudo apt-get install -y docker-compose
       - name: Build and run Docker containers
         run: |
-          cd cocktail-manager-auth/api
+          cd CocktailManager/cocktail-manager-auth/api
           docker-compose up -d --build
