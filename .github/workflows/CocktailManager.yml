@@ -11,12 +11,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: "recursive"
-          path: ./CocktailManager
+          path: ./cocktail-manager-auth
       - name: Set up Docker Compose
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
       - name: Build and run Docker containers
         run: |
-          cd CocktailManager/cocktail-manager-auth/api
+          cd cocktail-manager-auth/api
           docker-compose up -d --build
