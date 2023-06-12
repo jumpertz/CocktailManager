@@ -4,6 +4,7 @@
 [submodule "CocktailManager-front"]
 	path = CocktailManager-front
 	url = git@github.com:jumpertz/CocktailManager-front.git
-[submodule "cocktail-manager-cocktails"]
-	path = cocktail-manager-cocktails
+	
+[submodule "cocktail-manager-cocktail"]
+	path = cocktail-manager-cocktail
 	url = git@github.com:jumpertz/cocktail-manager-cocktails.git
