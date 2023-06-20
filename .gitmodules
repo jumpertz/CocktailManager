@@ -1,9 +1,6 @@
 [submodule "cocktail-manager-auth"]
 	path = cocktail-manager-auth
 	url = git@github.com:jumpertz/cocktail-manager-auth.git
-[submodule "cocktail-manager-front"]
-	path = cocktail-manager-front
-	url = git@github.com:jumpertz/cocktail-manager-front.git
 [submodule "cocktail-manager-cocktail"]
 	path = cocktail-manager-cocktail
 	url = git@github.com:jumpertz/cocktail-manager-cocktail.git
