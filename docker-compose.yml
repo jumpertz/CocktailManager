@@ -1,0 +1,68 @@
+version: '3.7'
+
+services:
+  # User
+  auth:
+    container_name: auth
+    image: node:18-alpine
+    user: node
+    working_dir: /home/node
+    env_file: ./cocktail-manager-auth/.env
+    ports:
+      - ${AUTH_PORT:-5000}:5000
+    volumes:
+      - ./cocktail-manager-auth/:/home/node
+    command: /bin/sh -c "npm i && npm run start:dev"
+    networks:
+      - cocktail-manager-network
+
+  # Gateway
+  gateway:
+    container_name: gateway
+    image: node:18-alpine
+    user: node
+    working_dir: /home/node
+    env_file: ./cocktail-manager-gateway/.env
+    ports:
+      - ${GATEWAY_PORT:-3000}:3000
+    volumes:
+      - ./cocktail-manager-gateway/:/home/node
+    command: /bin/sh -c "npm i && npm run start:dev"
+    networks:
+      - cocktail-manager-network
+
+  # Cocktail
+  cocktail:
+    container_name: cocktail
+    image: node:18-alpine
+    user: node
+    working_dir: /home/node
+    env_file: ./cocktail-manager-cocktail/.env
+    ports:
+      - ${COCKTAIL_PORT:-7000}:7000
+    volumes:
+      - ./cocktail-manager-cocktail:/home/node
+    command: /bin/sh -c "npm i && npm run start:dev"
+    networks:
+      - cocktail-manager-network
+
+  # DB
+  db:
+    container_name: db
+    image: postgres:13-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${BDD_USER}
+      POSTGRES_PASSWORD: ${BDD_PASSWORD}
+      POSTGRES_DB: ${BDD_NAME}
+    volumes:
+      - cocktail-manager-db-data:/var/lib/postgresql/data:rw
+    networks:
+      - cocktail-manager-network
+
+volumes:
+  cocktail-manager-db-data: {}
+
+networks:
+  cocktail-manager-network:
