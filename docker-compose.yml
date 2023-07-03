@@ -1,6 +1,23 @@
 version: '3.7'
 
 services:
+
+  # Front
+  front:
+    container_name: front
+    image: node:18-alpine
+    user: node
+    working_dir: /app
+    env_file: ./cocktail-manager-front/.env
+    ports:
+      - ${FRONT_PORT:-5173}:5173
+    volumes:
+      - ./cocktail-manager-front/:/app
+      - ./cocktail-manager-front/node_modules:/app/node_modules
+    command: /bin/sh -c "npm i && npm run dev"
+    networks:
+      - cocktail-manager-network
+
   # User
   auth:
     container_name: auth
